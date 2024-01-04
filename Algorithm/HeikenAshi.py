@@ -1,5 +1,5 @@
 import pandas as pd
-import mplfinance as mpf
+# import mplfinance as mpf
 
 def calculate_heiken_ashi(original_df):
     # Check if required fields exist in the DataFrame
