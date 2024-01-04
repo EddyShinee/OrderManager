@@ -58,7 +58,7 @@ def sendOrder(symbol, data):
     token = mt4_data.get_token()
     print("Retrieved token:", token)
     operation = "Buy"
-    price = decoded_data['price']
+    price = decoded_data['Price']
     take_profit = price + 10
     stop_loss = price - 10
     if decoded_data['Sell_Signal'] == True:
