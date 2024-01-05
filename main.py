@@ -53,7 +53,7 @@ def main():
 
 def sendOrder(symbol, data):
     decoded_data = {key.decode('utf-8'): value.decode('utf-8') for key, value in data.items()}
-    print(decoded_data)
+    print(type(decoded_data['Sell_Signal']))
     mt4_data = GetDataFromMT4()
     token = mt4_data.get_token()
     print("Retrieved token:", token)
@@ -61,11 +61,11 @@ def sendOrder(symbol, data):
     # price = decoded_data['Price']
     # take_profit = price + 10
     # stop_loss = price - 10
-    if (decoded_data['Sell_Signal'] is True) and (decoded_data['Buy_Signal'] is False):
+    if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
         operation = "Sell"
         # take_profit = price - 10
         # stop_loss = price + 10
-    if (decoded_data['Buy_Signal'] is True) and (decoded_data['Sell_Signal'] is False):
+    if (decoded_data['Buy_Signal'] == "True") and (decoded_data['Sell_Signal'] == "False"):
         operation = "Buy"
 
     params = {
