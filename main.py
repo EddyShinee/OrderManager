@@ -53,7 +53,7 @@ def main():
 
 def sendOrder(symbol, data):
     decoded_data = {key.decode('utf-8'): value.decode('utf-8') for key, value in data.items()}
-    print(decoded_data['Datetime'])
+    print(decoded_data)
     mt4_data = GetDataFromMT4()
     token = mt4_data.get_token()
     print("Retrieved token:", token)
