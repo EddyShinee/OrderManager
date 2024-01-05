@@ -61,11 +61,11 @@ def sendOrder(symbol, data):
     # price = decoded_data['Price']
     # take_profit = price + 10
     # stop_loss = price - 10
-    if decoded_data['Sell_Signal'] == 'True':
+    if decoded_data['Sell_Signal'] is True:
         operation = "Sell"
         # take_profit = price - 10
         # stop_loss = price + 10
-    if decoded_data['Buy_Signal'] == 'True':
+    if decoded_data['Buy_Signal'] is True:
         operation = "Buy"
 
     params = {
