@@ -58,23 +58,23 @@ def sendOrder(symbol, data):
     token = mt4_data.get_token()
     print("Retrieved token:", token)
     operation = ""
-    # price = decoded_data['Price']
-    # take_profit = price + 10
-    # stop_loss = price - 10
+    price = float(decoded_data['Close'])
+    pip = 0.0001 * 50
     if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
         operation = "Sell"
-        # take_profit = price - 10
-        # stop_loss = price + 10
+        take_profit = float(price - pip)
+        stop_loss = float(price + pip)
     if (decoded_data['Buy_Signal'] == "True") and (decoded_data['Sell_Signal'] == "False"):
         operation = "Buy"
-
+        take_profit = float(price + pip)
+        stop_loss = float(price - pip)
     params = {
               "id": token,
               "symbol": symbol,
               "operation": operation,
               "volume": 0.01,
-              "stoploss": 0,
-              "takeprofit": 0,
+              "stoploss": stop_loss,
+              "takeprofit": take_profit,
               "comment": {operation},
               "placedType": "Signal"
             }
