@@ -61,10 +61,12 @@ def sendOrder(symbol, data):
     # price = decoded_data['Price']
     # take_profit = price + 10
     # stop_loss = price - 10
-    if decoded_data['Sell_Signal'] == True:
+    if decoded_data['Sell_Signal'] == 'True':
         operation = "Sell"
         # take_profit = price - 10
         # stop_loss = price + 10
+    if decoded_data['Buy_Signal'] == 'True':
+        operation = "Buy"
 
     params = {
               "id": token,
@@ -73,7 +75,7 @@ def sendOrder(symbol, data):
               "volume": 0.01,
               "stoploss": 0,
               "takeprofit": 0,
-              "comment": "operation",
+              "comment": {operation},
               "placedType": "Signal"
             }
     url = BASE_API_URL + ORDER_SEND
