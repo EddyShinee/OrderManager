@@ -72,7 +72,7 @@ def sendOrder(symbol, data):
               "id": token,
               "symbol": symbol,
               "operation": operation,
-              "volume": 0.01,
+              "volume": 0.1,
               "stoploss": stop_loss,
               "takeprofit": take_profit,
               "comment": {operation},
