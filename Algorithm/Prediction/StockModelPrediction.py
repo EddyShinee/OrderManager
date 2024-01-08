@@ -1,11 +1,13 @@
-from sklearn.model_selection import train_test_split, RandomizedSearchCV
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.impute import SimpleImputer
-from sklearn.compose import ColumnTransformer
+import logging
+
 import numpy as np
 import pandas as pd
-import logging
+from sklearn.compose import ColumnTransformer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
+from sklearn.tree import DecisionTreeClassifier
+
 
 class StockModelSelector:
     def __init__(self):

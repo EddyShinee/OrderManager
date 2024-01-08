@@ -1,4 +1,3 @@
-import pandas as pd
 # import mplfinance as mpf
 
 def calculate_heiken_ashi(original_df):
@@ -21,14 +20,15 @@ def calculate_heiken_ashi(original_df):
 
     return df
 
-def detect_signal_heiken_ashi(heiken_ashi_df):
+
+def detect_signal_heiken_ashi(original_df):
     # Check if required fields exist in the DataFrame
     required_fields = ['HA_Open', 'HA_High', 'HA_Low', 'HA_Close']
-    if not all(field in heiken_ashi_df for field in required_fields):
+    if not all(field in original_df for field in required_fields):
         raise ValueError("DataFrame must contain 'HA_Open', 'HA_High', 'HA_Low', 'HA_Close' columns")
 
     # Copy the original DataFrame to a new DataFrame
-    df = heiken_ashi_df.copy()
+    df = original_df.copy()
 
     # Xác định tín hiệu
     df['Signal'] = 'Hold'
@@ -49,7 +49,10 @@ def detect_signal_heiken_ashi(heiken_ashi_df):
 
     return df
 
-# Example usage:
-# data is a DataFrame containing the columns Open, High, Low, and Close
-# heiken_ashi_data = calculate_heiken_ashi(data)
-# signals = detect_signal_heiken_ashi(heiken_ashi_data)
+def calculate_and_detect_ha_signal(original_df):
+    # First, calculate the Heiken Ashi values
+    heiken_ashi_data = calculate_heiken_ashi(original_df)
+    # Then, detect signals on the Heiken Ashi data
+    signals = detect_signal_heiken_ashi(heiken_ashi_data)
+    return signals
+

@@ -1,9 +1,9 @@
+import joblib
 import numpy as np
 import pandas as pd
+from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import classification_report, roc_auc_score
-import joblib
 
 # Tạo dữ liệu giả định
 np.random.seed(42)

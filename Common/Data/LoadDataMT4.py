@@ -1,14 +1,14 @@
 from datetime import datetime
 import pandas as pd
-from Telegram.SendNotification import send_message
-from Utils.GlobalConfig import BASE_API_URL, USER, PASSWORD, HOST, PORT, API_PING, API_CONNECT, API_HISTORY_PRICE_MANY, \
+from Common.Telegram.SendNotification import send_message
+from Common.Utils.GlobalConfig import BASE_API_URL, USER, PASSWORD, HOST, PORT, API_PING, API_CONNECT, API_HISTORY_PRICE_MANY, \
     TIME_FRAME, BARS, API_CONNECT, SYMBOLS, API_HISTORY_PRICE_MANY
-from Utils.HttpRequest import make_get_request, make_post_request
+from Common.Utils.HttpRequest import make_get_request, make_post_request
 from Algorithm.DetectSignal import detect_signal
 import time
 
 
-class GetDataFromMT4:
+class LoadDataFromMT4:
     def __init__(self):
         self.base_url = BASE_API_URL
         self.path_connect = API_CONNECT
@@ -30,7 +30,7 @@ class GetDataFromMT4:
         }
         return make_get_request(url, params=request_params)
 
-    def get_data_mt4(self):
+    def load_data_mt4(self):
         token = self.get_token()
         print("Token: " + token)
         now = datetime.now()
@@ -63,7 +63,7 @@ class GetDataFromMT4:
         return data
 
     def run(self):
-        response_data = self.get_data_mt4()
+        response_data = self.load_data_mt4()
         if response_data is None:
             print("System Error")
             return

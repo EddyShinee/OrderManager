@@ -3,7 +3,7 @@ import os
 
 
 class GlobalConfig:
-    def __init__(self, config_file='config/config.ini'):
+    def __init__(self, config_file='Common/Config/config.ini'):
         self.config = configparser.ConfigParser()
         self.load_config(config_file)
 
@@ -66,6 +66,12 @@ class GlobalConfig:
     def get_order_send(self):
         return self.config.get('api_orders','order_send', fallback=True )
 
+    def get_pips(self):
+        return self.config.get('order_config', 'pips', fallback=None)
+
+    def get_lots(self):
+        return self.config.get('order_config', 'lots', fallback=None)
+
 # Sử dụng GlobalConfig
 try:
     config = GlobalConfig()
@@ -98,6 +104,8 @@ try:
     # Order
     ALLOW_ONCE_TIME_ORDER = config.get_once_time_order()
     ORDER_SEND = config.get_order_send()
+    PIPS = config.get_pips()
+    LOTS = config.get_lots()
 
     if not BASE_API_URL or not LOG_PATH:
         raise ValueError("Essential configuration data is missing.")
