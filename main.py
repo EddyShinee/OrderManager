@@ -59,7 +59,7 @@ def sendOrder(symbol, data):
     print("Retrieved token:", token)
     operation = ""
     price = float(decoded_data['Close'])
-    pip = 0.0001 * 50
+    pip = 0.0001 * 20
     if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
         operation = "Sell"
         take_profit = float(price - pip)
