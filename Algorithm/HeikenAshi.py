@@ -49,10 +49,10 @@ def detect_signal_heiken_ashi(original_df):
 
     return df
 
+
 def calculate_and_detect_ha_signal(original_df):
     # First, calculate the Heiken Ashi values
     heiken_ashi_data = calculate_heiken_ashi(original_df)
     # Then, detect signals on the Heiken Ashi data
     signals = detect_signal_heiken_ashi(heiken_ashi_data)
     return signals
-

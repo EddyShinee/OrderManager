@@ -1,5 +1,6 @@
 from Common.Utils.GlobalConfig import BARS
 
+
 def calculate_macd(original_df):
     if not all(field in original_df.columns for field in ['Close']):
         raise ValueError("DataFrame must contain 'Close' column")

@@ -3,7 +3,7 @@ import pandas as pd
 
 from Algorithm.HeikenAshi import calculate_and_detect_ha_signal
 from Algorithm.MACD import calculate_and_detect_macd_signal
-from Common.Utils.GlobalConfig import BARS, ALLOW_ONCE_TIME_ORDER
+from Common.Utils.GlobalConfig import ALLOW_ONCE_TIME_ORDER
 from Common.Utils.Redis import redis_manager
 
 

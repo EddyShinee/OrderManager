@@ -25,13 +25,11 @@ class RedisManager:
             self.connect()
         return self.connection.get(key)
 
-
     def hset_value(self, name, key, value):
         """Lưu trữ giá trị trong hash của Redis."""
         if self.connection is None:
             self.connect()
         self.connection.hset(name, key, value)
-
 
     def hget_value(self, name, key):
         """Lấy giá trị từ hash trong Redis."""
@@ -49,6 +47,7 @@ class RedisManager:
         if self.connection is None:
             self.connect()
         return self.connection.delete(key)
+
 
 # Tạo một instance của RedisManager để sử dụng toàn cục
 redis_manager = RedisManager()

@@ -64,13 +64,14 @@ class GlobalConfig:
         return self.config.get('DEFAULT', 'once_time_order', fallback=True)
 
     def get_order_send(self):
-        return self.config.get('api_orders','order_send', fallback=True )
+        return self.config.get('api_orders', 'order_send', fallback=True)
 
     def get_pips(self):
         return self.config.get('order_config', 'pips', fallback=None)
 
     def get_lots(self):
         return self.config.get('order_config', 'lots', fallback=None)
+
 
 # Sử dụng GlobalConfig
 try:
@@ -81,7 +82,7 @@ try:
     LOG_PATH = config.get_log_path()
     API_PING = config.get_ping()
 
-    #Connect
+    # Connect
     API_CONNECT = config.get_api_connect()
     USER = config.get_user()
     PASSWORD = config.get_password()
@@ -93,7 +94,6 @@ try:
     API_HISTORY_PRICE_MANY = config.get_api_history_price_many()
     TIME_FRAME = config.get_time_frame()
     BARS = config.get_count_bar()
-
 
     # Telegram
     TELEGRAM_TOKEN = config.get_telegram_token()

@@ -1,6 +1,6 @@
 import telegram
-from telegram import Bot
-from Common.Utils.GlobalConfig import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_DOMAIN, TELEGRAM_SEND_MESSAGE
+
+from Common.Utils.GlobalConfig import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
 
 
 def send_message(message):

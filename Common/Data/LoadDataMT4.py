@@ -1,11 +1,11 @@
 from datetime import datetime
+
 import pandas as pd
-from Common.Telegram.SendNotification import send_message
-from Common.Utils.GlobalConfig import BASE_API_URL, USER, PASSWORD, HOST, PORT, API_PING, API_CONNECT, API_HISTORY_PRICE_MANY, \
-    TIME_FRAME, BARS, API_CONNECT, SYMBOLS, API_HISTORY_PRICE_MANY
-from Common.Utils.HttpRequest import make_get_request, make_post_request
+
 from Algorithm.DetectSignal import detect_signal
-import time
+from Common.Utils.GlobalConfig import BASE_API_URL, USER, PASSWORD, HOST, PORT, TIME_FRAME, BARS, API_CONNECT, SYMBOLS, \
+    API_HISTORY_PRICE_MANY
+from Common.Utils.HttpRequest import make_get_request
 
 
 class LoadDataFromMT4:

@@ -1,8 +1,11 @@
-import requests
 import logging
 import time
 
+import requests
+
 max_attempts = 5
+
+
 def make_get_request(url, params=None, headers=None, timeout=5, allow_redirects=True, verify=True):
     """Thực hiện yêu cầu GET."""
     attempt = 1
@@ -31,4 +34,3 @@ def make_post_request(url, data=None, json=None, headers=None, timeout=10, verif
     except requests.RequestException as e:
         logging.error(f"POST request error for {url}: {e}")
         return None
-
