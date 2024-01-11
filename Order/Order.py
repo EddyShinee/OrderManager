@@ -4,6 +4,8 @@ from Common.Data.LoadDataMT4 import LoadDataFromMT4
 from Common.Telegram.SendNotification import send_message
 from Common.Utils.GlobalConfig import BASE_API_URL, ORDER_SEND, PIPS, LOTS, TIME_FRAME
 from Common.Utils.HttpRequest import make_get_request
+from Common.Utils.Redis import redis_manager
+
 
 
 def send_order(symbol, data):
@@ -39,3 +41,9 @@ def send_order(symbol, data):
     str_message = f"Symbol: {symbol}, Time: {datetime.now()}, Volume: {LOTS}, Type: {operation}, Timeframe: {TIME_FRAME}"
     send_message(str_message)
     return make_get_request(url, params=params)
+
+
+
+
+def remove_data_from_redis(symbol):
+    return redis_manager.remove_hset(symbol)
