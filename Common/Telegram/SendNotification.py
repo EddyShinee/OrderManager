@@ -1,8 +1,5 @@
 import telegram
-
 from Common.Utils.GlobalConfig import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
-
-
 def send_message(message):
     try:
         telegram_notify = telegram.Bot(TELEGRAM_TOKEN)

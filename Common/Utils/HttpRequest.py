@@ -1,7 +1,7 @@
 import logging
-import time
 
 import requests
+import time
 
 max_attempts = 5
 

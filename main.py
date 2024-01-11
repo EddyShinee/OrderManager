@@ -1,12 +1,11 @@
 import logging
-import time
 from datetime import datetime
 
-from Common.Data.LoadDataMT4 import LoadDataFromMT4
-from Common.Telegram.SendNotification import send_message
-from Common.Utils.GlobalConfig import SYMBOLS, BASE_API_URL, ORDER_SEND, PIPS, LOTS
-from Common.Utils.HttpRequest import make_get_request
+import time
+
+from Common.Utils.GlobalConfig import SYMBOLS
 from Common.Utils.Redis import redis_manager
+from Order.Order import send_order
 
 run_seconds = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52,
                54, 56, 58]
@@ -31,7 +30,7 @@ def schedule_running():
         for symbol in symbols:
             data_symbol = fetch_data_from_redis(symbol)
             if data_symbol:
-                sendOrder(symbol, data_symbol)
+                send_order(symbol, data_symbol)
             # else:
             #     return None
             # print(f"No data found for symbol: {symbol}")
@@ -53,41 +52,6 @@ def main():
     except Exception as e:
         logging.error(f'Error during application initialization: {str(e)}')
         raise
-
-
-def sendOrder(symbol, data):
-    decoded_data = {key.decode('utf-8'): value.decode('utf-8') for key, value in data.items()}
-    print(type(decoded_data['Sell_Signal']))
-    mt4_data = LoadDataFromMT4()
-    token = mt4_data.get_token()
-    print("Retrieved token:", token)
-    operation = ""
-    price = float(decoded_data['Close'])
-    pips = 0.0001 * int(PIPS)
-    if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
-        operation = "Sell"
-        take_profit = float(price - pips)
-        stop_loss = float(price + pips)
-    if (decoded_data['Buy_Signal'] == "True") and (decoded_data['Sell_Signal'] == "False"):
-        operation = "Buy"
-        take_profit = float(price + pips)
-        stop_loss = float(price - pips)
-    params = {
-        "id": token,
-        "symbol": symbol,
-        "operation": operation,
-        "volume": LOTS,
-        "stoploss": stop_loss,
-        "takeprofit": take_profit,
-        "comment": {operation},
-        "placedType": "Signal"
-    }
-    url = BASE_API_URL + ORDER_SEND
-    print(f"Đặt lệnh thành công {params} - Time: {datetime.now()}")
-    remove_data_from_redis(symbol)
-    str_message = f"Symbol: {symbol}, Time: {datetime.now()}, Volume: {LOTS}, Type: {operation}"
-    send_message(str_message)
-    return make_get_request(url, params=params)
 
 
 if __name__ == "__main__":
