@@ -35,7 +35,7 @@ def send_order(symbol, data):
     }
     url = BASE_API_URL + ORDER_SEND
     print(f"Đặt lệnh thành công {params} - Time: {datetime.now()}")
-    # remove_data_from_redis(symbol)
+    remove_data_from_redis(symbol)
     str_message = f"Symbol: {symbol}, Time: {datetime.now()}, Volume: {LOTS}, Type: {operation}, Timeframe: {TIME_FRAME}"
     send_message(str_message)
     return make_get_request(url, params=params)
