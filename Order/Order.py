@@ -20,7 +20,7 @@ def send_order(symbol, data):
     if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
         operation = "Sell"
         take_profit = float(price - pips)
-        stop_loss = float(price + pips)
+        stop_loss = float(price + (pips * 2))
     if (decoded_data['Buy_Signal'] == "True") and (decoded_data['Sell_Signal'] == "False"):
         operation = "Buy"
         take_profit = float(price + pips)
