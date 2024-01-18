@@ -20,7 +20,7 @@ class LoadDataFromMT4:
         self.symbols = SYMBOLS
 
     def get_token(self):
-        print("Get account token")
+        print("=== Get Account Token ===")
         url = self.base_url + self.path_connect
         request_params = {
             'user': self.account_number,

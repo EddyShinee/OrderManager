@@ -10,7 +10,6 @@ from Common.Utils.Redis import redis_manager
 
 def send_order(symbol, data):
     decoded_data = {key.decode('utf-8'): value.decode('utf-8') for key, value in data.items()}
-    print(type(decoded_data['Sell_Signal']))
     mt4_data = LoadDataFromMT4()
     token = mt4_data.get_token()
     print("Retrieved token:", token)
@@ -32,11 +31,13 @@ def send_order(symbol, data):
         "volume": LOTS,
         "stoploss": stop_loss,
         "takeprofit": take_profit,
-        "comment": {operation},
+        "comment": f"[Eddy] {symbol} - {operation} - {LOTS} - {round(price, 5)} - {datetime.now()}",
         "placedType": "Signal"
     }
     url = BASE_API_URL + ORDER_SEND
-    print(f"Đặt lệnh thành công {params} - Time: {datetime.now()}")
+    print("===========================================================")
+    print(f"Send Order Success: {params} - Time: {datetime.now()}")
+    print("===========================================================")
     remove_data_from_redis(symbol)
     str_message = f"Symbol: {symbol}, Time: {datetime.now()}, Volume: {LOTS}, Type: {operation}, Timeframe: {TIME_FRAME}"
     send_message(str_message)
