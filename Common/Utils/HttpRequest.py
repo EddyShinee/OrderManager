@@ -1,8 +1,7 @@
 import logging
-
 import requests
 import time
-
+from Common.Telegram.SendNotification import send_message
 max_attempts = 5
 
 
@@ -15,8 +14,12 @@ def make_get_request(url, params=None, headers=None, timeout=5, allow_redirects=
                                     allow_redirects=allow_redirects, verify=verify)
             response.raise_for_status()
             print(f"[GET]- Request: {attempt}")
+            print(response.text)
+
             return response.json() if 'application/json' in response.headers.get('Content-Type', '') else response.text
         except requests.RequestException as e:
+            messgae = f"=======> Error when call API: {e}"
+            send_message(e)
             # logging.error(f" GET request error for {url} on attempt {attempt}: {e}")
             if attempt == max_attempts:
                 print(f"Gọi API thất bại quá số lần cho phép: {attempt}")
