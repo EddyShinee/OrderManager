@@ -47,7 +47,7 @@ def send_order(symbol, data):
     print("===========================================================")
     print(f"Send Order Success: {params} - Time: {datetime.now()}")
     print("===========================================================")
-    # remove_data_from_redis(symbol)
+    remove_data_from_redis(symbol)
     str_message = f"Symbol: {symbol}, Time: {datetime.now()}, Volume: {LOTS}, Type: {operation}, Timeframe: {TIME_FRAME}"
     send_message(str_message)
     return make_get_request(url, params=params)
