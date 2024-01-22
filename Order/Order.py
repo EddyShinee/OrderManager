@@ -13,9 +13,9 @@ def send_order(symbol, data):
     operation = ""
     price = float(decoded_data['Close'])
     pips = 0.0001 * int(PIPS)
-    is_jpy_pair = "JPY" in symbol
-    if is_jpy_pair:
-        pips *= 100  # Adjust pips for JPY pairs
+    # is_jpy_pair = "JPY" in symbol
+    # if is_jpy_pair:
+    #     pips *= 100  # Adjust pips for JPY pairs
 
     # Adjust TP and SL for USDJPY
     if (decoded_data['Sell_Signal'] == "True") and (decoded_data['Buy_Signal'] == "False"):
